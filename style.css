@@ -197,6 +197,30 @@ h2 {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
+.area-komputer > div,
+.area-player > div {
+  box-sizing: border-box;
+  position: absolute;
+  color: white;
+  font-weight: bold;
+}
+
+.area-komputer > div {
+  left: 0;
+  top: 0;
+  margin-left: 2em;
+  margin-top: 1em;
+  background-color: royalblue;
+}
+
+.area-player > div {
+  right: 0;
+  bottom: 0;
+  margin-right: 4em;
+  margin-bottom: 1em;
+  background-color: crimson;
+}
+
 ul {
   display: flex;
   flex-grow: 1;
@@ -230,4 +254,20 @@ img {
 .semut:active,
 .orang:active {
   top: 2px;
+}
+
+@media screen and (max-width: 600px) {
+  .area-komputer > div {
+    left: 0;
+    top: 0;
+    margin-left: 2em;
+    margin-top: -1em;
+  }
+
+  .area-player > div {
+    right: 0;
+    bottom: 0;
+    margin-right: 4em;
+    margin-bottom: -1em;
+  }
 }

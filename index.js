@@ -35,7 +35,7 @@ function loadingImg2(img) {
   }, 100);
 }
 function loadingText(text) {
-  const charList = [".", ".", ".", ".", "?"];
+  const charList = [".", ".", ".", "?"];
   let i = 0;
   textInterval = setInterval(() => {
     text.textContent += charList[i];
@@ -50,15 +50,23 @@ function loadingText(text) {
 const player = document.querySelector(".area-player");
 const info = document.querySelector(".info");
 const computer = document.querySelector(".img-komputer");
+const skorPlayer = document.querySelector(".skor-player");
+const skorKomputer = document.querySelector(".skor-komputer");
 player.addEventListener("click", e => {
   if (e.target.tagName == "IMG") {
     const pilihanKomputer = pilihanKomp();
     const pilihanPlayer = e.target.className;
+    const hasil = getHasil(pilihanKomputer, pilihanPlayer);
     // loadingImg(computer);
     clearInterval(myInterval);
     clearInterval(textInterval);
     computer.src = `img/${pilihanKomputer}.png`;
-    info.textContent = `${getHasil(pilihanKomputer, pilihanPlayer).toUpperCase()}!`;
+    info.textContent = `${hasil.toUpperCase()}!`;
+    if (hasil == "menang") {
+      skorPlayer.textContent = parseInt(skorPlayer.textContent) + 1;
+    } else if (hasil == "kalah") {
+      skorKomputer.textContent = parseInt(skorKomputer.textContent) + 1;
+    }
   }
 });
 
