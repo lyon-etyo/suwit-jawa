@@ -25,7 +25,7 @@ function loadingImg(img) {
     if (i == imgList.length) i = 0;
   }, 100);
 }
-let myInterval;
+let myInterval, textInterval;
 function loadingImg2(img) {
   const imgList = ["gajah", "semut", "orang"];
   let i = 0;
@@ -33,6 +33,18 @@ function loadingImg2(img) {
     img.src = `img/${imgList[i++]}.png`;
     if (i == imgList.length) i = 0;
   }, 100);
+}
+function loadingText(text) {
+  const charList = [".", ".", ".", ".", "?"];
+  let i = 0;
+  textInterval = setInterval(() => {
+    text.textContent += charList[i];
+    if (i == charList.length) {
+      text.textContent = "";
+      i = 0;
+    }
+    i++;
+  }, 250);
 }
 
 const player = document.querySelector(".area-player");
@@ -44,6 +56,7 @@ player.addEventListener("click", e => {
     const pilihanPlayer = e.target.className;
     // loadingImg(computer);
     clearInterval(myInterval);
+    clearInterval(textInterval);
     computer.src = `img/${pilihanKomputer}.png`;
     info.textContent = `${getHasil(pilihanKomputer, pilihanPlayer).toUpperCase()}!`;
   }
@@ -52,9 +65,12 @@ player.addEventListener("click", e => {
 const li = player.querySelectorAll("li img");
 li.forEach(el => {
   el.addEventListener("mouseenter", () => {
+    loadingText(info);
     loadingImg2(computer);
   });
   el.addEventListener("mouseout", () => {
     clearInterval(myInterval);
+    clearInterval(textInterval);
+    info.textContent = "";
   });
 });
